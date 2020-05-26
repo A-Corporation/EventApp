@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             x:Class="EventApp.Views.AgendaPage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:local="clr-namespace:EventApp.Views.Templates"
+             Icon="Agenda"
+             Title="Программа"
+             NavigationPage.HasBackButton="False">
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Button x:Name="BackMenuButton"
+                    ImageSource="HamburgerMenu"
+                    HorizontalOptions="Start"
+                    Visual="Material"
+                    Clicked="OnClicked_BackToMenu" />
+
+            <material:MaterialLabel Text="ПРОГРАММА"
+                                    FontFamily="zurich-light-condensed-bt"
+                                    FontSize="20"
+                                    FontAttributes="Bold"
+                                    TextColor="Black"
+                                    HorizontalTextAlignment="Center"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Center" />
+
+        </StackLayout>
+
+    </NavigationPage.TitleView>
+
+
+
+    <ContentPage.Content>
+        <ListView BackgroundColor="White"
+                  HasUnevenRows="True"
+                  ItemsSource="{Binding AgendaItemsGrouped}"
+                  SeparatorVisibility="None"
+                  IsGroupingEnabled="True"
+                  x:Name="agendaList"
+                  Visual="Material"
+                  ItemTapped="Handle_ItemTapped"
+                  ItemSelected="Handle_ItemSelected"
+                  CachingStrategy="RecycleElementAndDataTemplate">
+
+
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell ios:Cell.DefaultBackgroundColor="White"
+                              Height="26">
+                        <StackLayout VerticalOptions="FillAndExpand"
+                                     Padding="5">
+                            <Label Text="{Binding Key}"
+                                   TextColor="Black"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"
+                                   FontFamily="zurich-light-condensed-bt" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <local:AgendaCard />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

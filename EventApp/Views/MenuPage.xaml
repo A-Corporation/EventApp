@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:controls="clr-namespace:EventApp.Controls"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="EventApp.Views.MenuPage"
+             BackgroundColor="Black">
+
+
+    <NavigationPage.TitleView>
+
+        <material:MaterialLabel Text="МЕНЮ"
+                                FontSize="20"
+                                FontAttributes="Bold"
+                                TextColor="Black"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center" />
+    </NavigationPage.TitleView>
+
+
+
+    <Grid x:Name="Layout"
+          VerticalOptions="FillAndExpand">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="180" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--
+        <forms:CachedImage x:Name="HeaderView"
+                           Grid.Row="0"
+                           Grid.RowSpan="2"
+                           Aspect="AspectFill"
+                           Source="https://www.onlinelogomaker.com/blog/wp-content/uploads/2017/06/fashion-logos.jpg" />
+        -->
+        
+        <forms:CachedImage x:Name="HeaderView"
+                           Grid.Row="0"
+                           Grid.RowSpan="2"
+                           Aspect="AspectFill"
+                           Source="RBU"/>
+        
+
+        <controls:ParallaxControl x:Name="Parallax"
+                                  Grid.Row="0"
+                                  Grid.RowSpan="3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="180" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+
+                <pancakeview:PancakeView Grid.Row="1"
+                                         CornerRadius="24,24,0,0"
+                                         BackgroundColor="White"
+                                         Margin="0,20,0,0"
+                                         Padding="0,30,0,35"
+                                         HasShadow="True">
+
+                    <StackLayout VerticalOptions="FillAndExpand"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="30">
+
+
+                        <material:MaterialCard Elevation="4"
+                                               Margin="10,0,10,0"
+                                               Clicked="OnAgendaCellTapped"
+                                               IsClickable="True">
+                            <StackLayout Orientation="Horizontal"
+                                         Spacing="15">
+
+                                <material:MaterialIcon Source="Agenda"
+                                                       HeightRequest="50"
+                                                       WidthRequest="50"
+                                                       Aspect="AspectFill" />
+
+                                <material:MaterialLabel VerticalOptions="Center"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        Text="ПРОГРАММА"
+                                                        HorizontalTextAlignment="Center"
+                                                        TextColor="Black"
+                                                        FontSize="24" />
+
+                            </StackLayout>
+
+                        </material:MaterialCard>
+
+                        <material:MaterialCard Elevation="4"
+                                               Margin="10,0,10,0"
+                                               Clicked="OnChatCellTapped"
+                                               IsClickable="True">
+                            <StackLayout Orientation="Horizontal"
+                                         Spacing="15">
+
+                                <material:MaterialIcon Source="Chat"
+                                                       HeightRequest="50"
+                                                       WidthRequest="50"
+                                                       Aspect="AspectFill" />
+
+                                <material:MaterialLabel VerticalOptions="Center"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        Text="ЧАТ"
+                                                        HorizontalTextAlignment="Center"
+                                                        TextColor="Black"
+                                                        FontFamily="zurich-light-condensed-bt"
+                                                        FontSize="24" />
+                            </StackLayout>
+
+                        </material:MaterialCard>
+
+                        <material:MaterialCard Elevation="4"
+                                               Margin="10,0,10,0"
+                                               Clicked="OnPhotoGalleryCellTapped"
+                                               IsClickable="True">
+                            <StackLayout Orientation="Horizontal"
+                                         Spacing="15">
+
+                                <material:MaterialIcon Source="PhotoGallery"
+                                                       HeightRequest="50"
+                                                       WidthRequest="50"
+                                                       Aspect="AspectFill" />
+
+                                <material:MaterialLabel VerticalOptions="Center"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        Text="ФОТО"
+                                                        HorizontalTextAlignment="Center"
+                                                        TextColor="Black"
+                                                        FontFamily="zurich-light-condensed-bt"
+                                                        FontSize="24" />
+                            </StackLayout>
+
+                        </material:MaterialCard>
+
+                        <material:MaterialCard Elevation="4"
+                                               Margin="10,0,10,0"
+                                               Clicked="OnAttendeesCellTapped"
+                                               IsClickable="True">
+                            <StackLayout Orientation="Horizontal"
+                                         Spacing="15">
+
+                                <material:MaterialIcon Source="Participants"
+                                                       HeightRequest="50"
+                                                       WidthRequest="50"
+                                                       Aspect="AspectFill" />
+
+                                <material:MaterialLabel VerticalOptions="Center"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        Text="УЧАСТНИКИ"
+                                                        HorizontalTextAlignment="Center"
+                                                        TextColor="Black"
+                                                        FontFamily="zurich-light-condensed-bt"
+                                                        FontSize="24" />
+                            </StackLayout>
+
+                        </material:MaterialCard>
+
+                        <material:MaterialCard Elevation="4"
+                                               Margin="10,0,10,0"
+                                               Clicked="OnSpeakersQuestionsCellTapped"
+                                               IsClickable="True">
+                            <StackLayout Orientation="Horizontal"
+                                         Spacing="15">
+
+                                <material:MaterialIcon Source="Discussing"
+                                                       HeightRequest="50"
+                                                       WidthRequest="50"
+                                                       Aspect="AspectFill" />
+
+                                <material:MaterialLabel VerticalOptions="Center"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        Text="ВОПРОСЫ СПИКЕРАМ"
+                                                        HorizontalTextAlignment="Center"
+                                                        TextColor="Black"
+                                                        FontFamily="zurich-light-condensed-bt"
+                                                        FontSize="24" />
+                            </StackLayout>
+
+
+                        </material:MaterialCard>
+
+                        <material:MaterialCard Elevation="4"
+                                               Margin="10,0,10,0"
+                                               Clicked="OnInfoCellTapped"
+                                               IsClickable="True">
+                            <StackLayout Orientation="Horizontal"
+                                         Spacing="15">
+
+                                <material:MaterialIcon Source="Info"
+                                                       HeightRequest="50"
+                                                       WidthRequest="50"
+                                                       Aspect="AspectFill" />
+
+                                <material:MaterialLabel VerticalOptions="Center"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        Text="ИНФОРМАЦИЯ"
+                                                        HorizontalTextAlignment="Center"
+                                                        TextColor="Black"
+                                                        FontFamily="zurich-light-condensed-bt"
+                                                        FontSize="24" />
+                            </StackLayout>
+
+
+                        </material:MaterialCard>
+
+
+                    </StackLayout>
+
+                </pancakeview:PancakeView>
+                <BoxView BackgroundColor="White"
+                         Grid.Row="2"
+                         Margin="0,-30,0,-500" />
+            </Grid>
+
+        </controls:ParallaxControl>
+    </Grid>
+</ContentPage>
+

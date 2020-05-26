@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventApp.Views.SpeakersQuestionsDetailsPage"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:views="clr-namespace:EventApp.Controls"
+             xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
+
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+
+            <material:MaterialLabel Text="ВОПРОСЫ"
+                                    FontFamily="zurich-light-condensed-bt"
+                                    FontSize="20"
+                                    FontAttributes="Bold"
+                                    TextColor="Black"
+                                    HorizontalTextAlignment="Center"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Center" />
+
+        </StackLayout>
+
+    </NavigationPage.TitleView>
+
+
+    <ContentPage.Content>
+
+        <StackLayout Spacing="10">
+
+           
+            <StackLayout Orientation="Horizontal"
+                         Spacing="10"
+                         Margin="20">
+                <Label Text="ТЕМА:"
+                       TextColor="#ffb300"
+                       FontSize="24"/>
+
+                <material:MaterialLabel Text="{Binding AgendaItem.Tittle}"
+                                        FontSize="24"/>
+            </StackLayout>
+
+
+            <views:KeyboardView VerticalOptions="FillAndExpand"
+                                x:Name="MainGrid">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="1" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.8*" />
+                    <ColumnDefinition Width="0.2*" />
+                </Grid.ColumnDefinitions>
+
+                <CollectionView x:Name="QuestionsList"
+                                BackgroundColor="White"
+                                ItemsSource="{Binding SpeakersQuestions}"
+                                VerticalOptions="FillAndExpand"
+                                Grid.ColumnSpan="2">
+
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                         VerticalItemSpacing="20" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <material:MaterialCard Elevation="2"
+                                                   Margin="10,0,10,0"
+                                                   CornerRadius="15"
+                                                   HorizontalOptions="FillAndExpand"
+                                                   VerticalOptions="FillAndExpand">
+                                <Grid HorizontalOptions="FillAndExpand"
+                                      VerticalOptions="FillAndExpand">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.85*" />
+                                        <ColumnDefinition Width="0.15*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackLayout Orientation="Horizontal"
+                                                 Grid.ColumnSpan="2"
+                                                 Spacing="15">
+
+                                        <circle:CircleImage Source="{Binding User.ImageUrl}"
+                                                            Aspect="AspectFill"
+                                                            HorizontalOptions="Center"
+                                                            VerticalOptions="FillAndExpand"
+                                                            Visual="Material"
+                                                            WidthRequest="30"
+                                                            HeightRequest="30" />
+
+                                        <material:MaterialLabel Text="{Binding User.FullName}"
+                                                                VerticalOptions="Center"
+                                                                HorizontalOptions="FillAndExpand"
+                                                                FontSize="20"
+                                                                TextColor="#808e95"
+                                                                HorizontalTextAlignment="Start"
+                                                                FontFamily="zurich-light-condensed-bt" />
+                                    </StackLayout>
+
+
+
+                                    <StackLayout Spacing="3"
+                                                 Orientation="Horizontal"
+                                                 VerticalOptions="Center"
+                                                 HorizontalOptions="Center"
+                                                 Grid.RowSpan="2"
+                                                 Grid.Column="1">
+                                        <ImageButton Source="{Binding LikeImage}"
+                                                     VerticalOptions="Center"
+                                                     IsEnabled="True"
+                                                     Command="{Binding LikeCommand}" />
+                                        <Label Text="{Binding LikesNumber}"
+                                               VerticalOptions="Center" />
+                                    </StackLayout>
+
+
+                                    <Label Grid.Row="1"
+                                           Grid.Column="0"
+                                           FontSize="16"
+                                           Text="{Binding Question}"
+                                           HorizontalOptions="FillAndExpand"
+                                           VerticalOptions="FillAndExpand"
+                                           Margin="10" />
+
+                                </Grid>
+                            </material:MaterialCard>
+
+
+                        </DataTemplate>
+
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
+
+
+
+                <BoxView Grid.Row="1"
+                         Grid.ColumnSpan="2"
+                         BackgroundColor="LightGray"
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand" />
+
+
+
+
+                <ImageButton Grid.Column="1"
+                             Grid.Row="2"
+                             HorizontalOptions="Center"
+                             VerticalOptions="EndAndExpand"
+                             HeightRequest="40"
+                             Clicked="SendQuestion_Clicked"
+                             Source="send"
+                             Margin="0,0,0,5" />
+
+
+                <Frame Grid.Column="0"
+                       Grid.Row="2"
+                       BorderColor="Black"
+                       Padding="5,3,5,3"
+                       Margin="10,0,0,5"
+                       CornerRadius="15"
+                       HasShadow="False"
+                       x:Name="FrameEditor"
+                       VerticalOptions="EndAndExpand">
+
+
+                    <views:ExtendedEditor HasRoundedCorner="true"
+                                          IsExpandable="true"
+                                          IsSpellCheckEnabled="True"
+                                          IsTextPredictionEnabled="True"
+                                          Keyboard="Chat"
+                                          Placeholder="Задать вопрос"
+                                          PlaceholderColor="#808e95"
+                                          VerticalOptions="Center"
+                                          Text="{Binding NewQuestion}"
+                                          x:Name="EntryText"
+                                          FontSize="14"
+                                          HorizontalOptions="FillAndExpand" />
+
+                </Frame>
+
+
+
+            </views:KeyboardView>
+
+        </StackLayout>
+
+
+    </ContentPage.Content>
+</ContentPage>

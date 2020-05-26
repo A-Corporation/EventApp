@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventApp.Views.AttendeesPage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:controls="clr-namespace:EventApp.Controls"
+             NavigationPage.HasBackButton="False">
+
+
+
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Button ImageSource="HamburgerMenu"
+                    HorizontalOptions="Start"
+                    Visual="Material"
+                    Clicked="OnClicked_BackToMenu" />
+
+            <material:MaterialLabel Text="УЧАСТНИКИ"
+                                    FontFamily="zurich-light-condensed-bt"
+                                    FontSize="20"
+                                    FontAttributes="Bold"
+                                    TextColor="Black"
+                                    HorizontalTextAlignment="Center"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Center" />
+
+        </StackLayout>
+
+    </NavigationPage.TitleView>
+
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="20"
+                         Margin="0,20,0,10">
+
+                <!-- СПИКЕРЫ -->
+
+                <material:MaterialCard Elevation="4"
+                                       Margin="10,0,10,0"
+                                       Clicked="OnSpeakersCellTapped"
+                                       IsClickable="True">
+                    <StackLayout Orientation="Horizontal"
+                                 Spacing="20">
+
+                        <material:MaterialIcon Source="Speakers"
+                                               HeightRequest="50"
+                                               WidthRequest="50"
+                                               Aspect="AspectFill" />
+
+                        <material:MaterialLabel VerticalOptions="Center"
+                                                HorizontalOptions="FillAndExpand"
+                                                Text="СПИКЕРЫ"
+                                                TextColor="Black"
+                                                FontFamily="zurich-light-condensed-bt"
+                                                FontSize="24" />
+                    </StackLayout>
+
+                </material:MaterialCard>
+
+                <!-- БАЙЕРЫ -->
+                <material:MaterialCard Elevation="4"
+                                       Margin="10,0,10,0"
+                                       Clicked="OnBuyersCellTapped"
+                                       IsClickable="True">
+                    <StackLayout Orientation="Horizontal"
+                                 Spacing="20">
+
+                        <material:MaterialIcon Source="Buyers"
+                                               HeightRequest="50"
+                                               WidthRequest="50"
+                                               Aspect="AspectFill" />
+
+                        <material:MaterialLabel VerticalOptions="Center"
+                                                HorizontalOptions="FillAndExpand"
+                                                Text="БАЙЕРЫ"
+                                                TextColor="Black"
+                                                FontFamily="zurich-light-condensed-bt"
+                                                FontSize="24" />
+                    </StackLayout>
+
+                </material:MaterialCard>
+
+                <!-- ДИЗАЙНЕРЫ -->
+                <material:MaterialCard Elevation="4"
+                                       Margin="10,0,10,0"
+                                       Clicked="OnDisignersCellTapped"
+                                       IsClickable="True">
+                    <StackLayout Orientation="Horizontal"
+                                 Spacing="20">
+
+                        <material:MaterialIcon Source="Disigners"
+                                               HeightRequest="50"
+                                               WidthRequest="50"
+                                               Aspect="AspectFill" />
+
+                        <material:MaterialLabel VerticalOptions="Center"
+                                                HorizontalOptions="FillAndExpand"
+                                                Text="ДИЗАЙНЕРЫ"
+                                                TextColor="Black"
+                                                FontFamily="zurich-light-condensed-bt"
+                                                FontSize="24" />
+                    </StackLayout>
+
+                </material:MaterialCard>
+
+                <!-- СПОНСОРЫ -->
+
+                <material:MaterialCard Elevation="4"
+                                       Margin="10,0,10,0"
+                                       Clicked="OnSponsorsCellTapped"
+                                       IsClickable="True">
+                    <StackLayout Orientation="Horizontal"
+                                 Spacing="20">
+
+                        <material:MaterialIcon Source="Sponsors"
+                                               HeightRequest="50"
+                                               WidthRequest="50"
+                                               Aspect="AspectFill" />
+
+                        <material:MaterialLabel VerticalOptions="Center"
+                                                Text="СПОНСОРЫ"
+                                                HorizontalTextAlignment="Center"
+                                                TextColor="Black"
+                                                FontFamily="zurich-light-condensed-bt"
+                                                FontSize="24" />
+                    </StackLayout>
+
+                </material:MaterialCard>
+
+
+                <!-- ПРЕССА -->
+
+                <material:MaterialCard Elevation="4"
+                                       Margin="10,0,10,0"
+                                       Clicked="OnPressCellTapped"
+                                       IsClickable="True">
+                    <StackLayout Orientation="Horizontal"
+                                 Spacing="20">
+
+                        <material:MaterialIcon Source="Press"
+                                               HeightRequest="50"
+                                               WidthRequest="50"
+                                               Aspect="AspectFill" />
+
+                        <material:MaterialLabel VerticalOptions="Center"
+                                                HorizontalOptions="FillAndExpand"
+                                                Text="ПРЕССА"
+                                                TextColor="Black"
+                                                FontFamily="zurich-light-condensed-bt"
+                                                FontSize="24" />
+                    </StackLayout>
+
+                </material:MaterialCard>
+
+
+
+                <!-- ОРГАНИЗАТОРЫ -->
+
+                <material:MaterialCard Elevation="4"
+                                       Margin="10,0,10,0"
+                                       Clicked="OnOrganizersCellTapped"
+                                       IsClickable="True">
+                    <StackLayout Orientation="Horizontal"
+                                 Spacing="20">
+
+                        <material:MaterialIcon Source="Organizers"
+                                               HeightRequest="50"
+                                               WidthRequest="50"
+                                               Aspect="AspectFill" />
+
+                        <material:MaterialLabel VerticalOptions="Center"
+                                                HorizontalOptions="FillAndExpand"
+                                                Text="ОРГАНИЗАТОРЫ"
+                                                TextColor="Black"
+                                                FontFamily="zurich-light-condensed-bt"
+                                                FontSize="24" />
+                    </StackLayout>
+
+                </material:MaterialCard>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

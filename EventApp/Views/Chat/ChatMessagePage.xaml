@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage x:Class="EventApp.Views.Chat.ChatMessagePage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:EventApp.Views.Chat"
+             xmlns:views="clr-namespace:EventApp.Controls"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             NavigationPage.HasBackButton="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:MessageDataTemplateSelector x:Key="MessageDataTemplateSelector" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Button ImageSource="HamburgerMenu"
+                    HorizontalOptions="Start"
+                    Visual="Material"
+                    Clicked="BackToMenuClicked"
+                    x:Name="BackMenuButton" />
+
+            <material:MaterialLabel Text="ЧАТ"
+                                    FontFamily="zurich-light-condensed-bt"
+                                    FontSize="20"
+                                    FontAttributes="Bold"
+                                    TextColor="Black"
+                                    HorizontalTextAlignment="Center"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Center" />
+
+        </StackLayout>
+
+    </NavigationPage.TitleView>
+
+
+    <ContentPage.Content>
+
+        <views:KeyboardView VerticalOptions="FillAndExpand"
+                            x:Name="MainGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.8*" />
+                <ColumnDefinition Width="0.2*" />
+            </Grid.ColumnDefinitions>
+
+            <!--
+            <ScrollView Grid.ColumnSpan="2">
+                <ListView x:Name="MessagesList"
+                          BackgroundColor="White"
+                          ItemTemplate="{StaticResource MessageDataTemplateSelector}"
+                          ItemsSource="{Binding ChatMessageInfo}"
+                          VerticalOptions="FillAndExpand"
+                          IsEnabled="False"
+                          HasUnevenRows="True"
+                          SeparatorVisibility="None"
+                          ItemSelected="Handle_ItemSelected"
+                          ItemTapped="Handle_ItemTapped">
+
+                </ListView>
+            </ScrollView>
+            -->
+            <views:NonSelectableListView x:Name="MessagesList"
+                                         BackgroundColor="White"
+                                         ItemTemplate="{StaticResource MessageDataTemplateSelector}"
+                                         ItemsSource="{Binding ChatMessageInfo}"
+                                         VerticalOptions="FillAndExpand"
+                                         HasUnevenRows="True"
+                                         SeparatorVisibility="None"
+                                         Grid.ColumnSpan="2">
+
+            </views:NonSelectableListView>
+            <!--
+            <CollectionView x:Name="MessagesList"
+                            BackgroundColor="White"
+                            ItemTemplate="{StaticResource MessageDataTemplateSelector}"
+                            ItemsSource="{Binding ChatMessageInfo}"
+                            VerticalOptions="FillAndExpand"
+                            Grid.ColumnSpan="2">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout VerticalItemSpacing="20"
+                                     Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                
+            </CollectionView>
+            -->
+
+
+            <BoxView Grid.Row="1"
+                     Grid.ColumnSpan="2"
+                     BackgroundColor="LightGray"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand" />
+
+
+
+
+            <ImageButton Grid.Column="1"
+                         Grid.Row="2"
+                         HorizontalOptions="Center"
+                         VerticalOptions="EndAndExpand"
+                         HeightRequest="40"
+                         Source="send"
+                         Clicked="SendClicked"
+                         Command="{Binding OnSendCommand}"
+                         Margin="0,0,0,5" />
+
+
+            <Frame Grid.Column="0"
+                   Grid.Row="2"
+                   BorderColor="Black"
+                   Padding="5,3,5,3"
+                   Margin="10,0,0,5"
+                   CornerRadius="15"
+                   HasShadow="False"
+                   x:Name="FrameEditor"
+                   VerticalOptions="EndAndExpand">
+
+                <views:ExtendedEditor HasRoundedCorner="true"
+                                      IsExpandable="true"
+                                      Placeholder="Сообщение"
+                                      PlaceholderColor="#808e95"
+                                      VerticalOptions="Center"
+                                      TextChanged="OnTextChanged"
+                                      Text="{Binding TextToSend}"
+                                      x:Name="notesEntry"
+                                      FontSize="14"
+                                      HorizontalOptions="FillAndExpand" />
+
+            </Frame>
+
+
+
+        </views:KeyboardView>
+
+
+
+    </ContentPage.Content>
+</ContentPage>

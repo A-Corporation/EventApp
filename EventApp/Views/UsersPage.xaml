@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventApp.Views.UsersPage"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:local="clr-namespace:EventApp.Views.Templates"
+             x:Name="usersPage">
+
+
+
+
+    <NavigationPage.TitleView>
+
+        <material:MaterialLabel Text="СПИКЕРЫ"
+                                FontFamily="zurich-light-condensed-bt"
+                                FontSize="20"
+                                FontAttributes="Bold"
+                                TextColor="Black"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center" />
+    </NavigationPage.TitleView>
+
+
+
+    <ContentPage.Content>
+        <ListView x:Name="usersList"
+                  ItemTapped="Handle_ItemTapped"
+                  ItemSelected="Handle_ItemSelected"
+                  HasUnevenRows="True"
+                  IsGroupingEnabled="True"
+                  SeparatorVisibility="None"
+                  Visual="Material"
+                  CachingStrategy="RecycleElementAndDataTemplate">
+
+            <ListView.Header>
+                <StackLayout Padding="5,5,5,10">
+                    <Entry Placeholder="Search"
+                           HorizontalTextAlignment="Center"
+                           BackgroundColor="White" />
+                </StackLayout>
+            </ListView.Header>
+
+
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell ios:Cell.DefaultBackgroundColor="White"
+                              Height="26">
+                        <StackLayout VerticalOptions="Center"
+                                     Padding="5"
+                                     Margin="5,0,5,0">
+                            <Label Text="{Binding Key}"
+                                   TextColor="Black"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"
+                                   FontFamily="zurich-light-condensed-bt" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
+
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <local:UserCard />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+            <!--
+            <ListView.Footer>
+                <StackLayout Padding="10">
+                    <Label Text="{Binding UsersCount}"
+                           HorizontalOptions="Center" />
+                </StackLayout>
+
+            </ListView.Footer>
+            -->
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

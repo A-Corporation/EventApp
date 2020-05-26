@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventApp.Views.ProfilePage"
+             xmlns:custom="clr-namespace:EventApp.Custom"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:controls="clr-namespace:EventApp.Controls"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             NavigationPage.HasNavigationBar="False">
+
+
+
+    <ContentPage.Content>
+
+        <Grid x:Name="Layout"
+              VerticalOptions="FillAndExpand">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="400" />
+                <RowDefinition Height="80" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <forms:CachedImage x:Name="HeaderView"
+                               Grid.Row="0"
+                               Grid.RowSpan="2"
+                               Aspect="AspectFill"
+                               Source="{Binding User.imageUrl}" />
+
+
+
+            <controls:ParallaxControl x:Name="Parallax"
+                                      Grid.Row="0"
+                                      Grid.RowSpan="3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="400" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+
+                    <pancakeview:PancakeView Grid.Row="1"
+                                             CornerRadius="24,24,0,0"
+                                             BackgroundColor="White"
+                                             Margin="0,20,0,0"
+                                             HasShadow="True">
+
+                        <StackLayout VerticalOptions="FillAndExpand"
+                                     HorizontalOptions="FillAndExpand"
+                                     Spacing="30"
+                                     Padding="30">
+
+
+                            <!-- Шапка описания(Фото, Имя, Должность, компания) -->
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="80" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+
+                                <circle:CircleImage Source="{Binding User.imageUrl}"
+                                                    Aspect="AspectFill"
+                                                    Visual="Material"
+                                                    WidthRequest="80"
+                                                    HeightRequest="80"
+                                                    VerticalOptions="Center"
+                                                    HorizontalOptions="Start"
+                                                    Grid.RowSpan="3" />
+
+                                <Label Text="{Binding User.FullName}"
+                                       VerticalOptions="FillAndExpand"
+                                       HorizontalOptions="FillAndExpand"
+                                       FontSize="20"
+                                       TextColor="Black"
+                                       FontAttributes="Bold"
+                                       FontFamily="zurich-light-condensed-bt"
+                                       Grid.Column="1" />
+
+                                <Label Text="{Binding User.JobPosition}"
+                                       VerticalOptions="FillAndExpand"
+                                       HorizontalOptions="FillAndExpand"
+                                       FontSize="16"
+                                       TextColor="Black"
+                                       HorizontalTextAlignment="Start"
+                                       FontFamily="zurich-light-condensed-bt"
+                                       Grid.Column="1"
+                                       Grid.Row="1" />
+
+                                <Label Text="{Binding User.ComponyName}"
+                                       VerticalOptions="FillAndExpand"
+                                       HorizontalOptions="FillAndExpand"
+                                       FontSize="16"
+                                       TextColor="Black"
+                                       HorizontalTextAlignment="Start"
+                                       FontFamily="zurich-light-condensed-bt"
+                                       Grid.Column="1"
+                                       Grid.Row="2" />
+
+                                <ImageButton Source="Edit"
+                                             VerticalOptions="Center"
+                                             HorizontalOptions="End"
+                                             WidthRequest="30"
+                                             HeightRequest="30"
+                                             CornerRadius="15"
+                                             Visual="Material"
+                                             Grid.Column="2"/>
+                            </Grid>
+
+                            <!--
+                            <StackLayout Orientation="Horizontal"
+                                         Spacing="20">
+                                <circle:CircleImage Source="{Binding User.imageUrl}"
+                                                    Aspect="AspectFill"
+                                                    Visual="Material"
+                                                    WidthRequest="80"
+                                                    HeightRequest="80"
+                                                    VerticalOptions="Center" />
+                                <StackLayout Padding="3">
+                                    <material:MaterialLabel Text="{Binding User.FullName}"
+                                                            VerticalOptions="Center"
+                                                            HorizontalOptions="FillAndExpand"
+                                                            FontSize="20"
+                                                            TextColor="Black"
+                                                            HorizontalTextAlignment="Start"
+                                                            FontAttributes="Bold"
+                                                            FontFamily="zurich-light-condensed-bt" />
+
+                                    <material:MaterialLabel Text="{Binding User.DetailInfo}"
+                                                            VerticalOptions="Center"
+                                                            HorizontalOptions="FillAndExpand"
+                                                            FontSize="16"
+                                                            TextColor="Black"
+                                                            HorizontalTextAlignment="Start"
+                                                            FontFamily="zurich-light-condensed-bt" />
+                                </StackLayout>
+
+                            </StackLayout>
+                            -->
+                            <!-- Контакты -->
+
+                            <StackLayout Spacing="10">
+                                <StackLayout Orientation="Horizontal"
+                                             Spacing="20">
+                                    <Image Source="Phone" />
+                                    <material:MaterialLabel Text="+7(916)532-78-90"
+                                                            FontSize="16"
+                                                            TextColor="Black"
+                                                            FontFamily="zurich-light-condensed-bt" />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal"
+                                             Spacing="20">
+                                    <Image Source="Mail" />
+                                    <material:MaterialLabel Text="igormann@gmail.ru"
+                                                            FontSize="16"
+                                                            TextColor="Black"
+                                                            FontFamily="zurich-light-condensed-bt" />
+                                </StackLayout>
+                            </StackLayout>
+
+
+
+                            <BoxView BackgroundColor="White"
+                                     HeightRequest="50" />
+
+
+
+                        </StackLayout>
+
+                    </pancakeview:PancakeView>
+                    <BoxView BackgroundColor="White"
+                             Grid.Row="2"
+                             Margin="0,-30,0,-500" />
+                </Grid>
+
+            </controls:ParallaxControl>
+        </Grid>
+
+        <!--
+        <TableView HasUnevenRows="True"
+                   Intent="Form"
+                   BackgroundColor="WhiteSmoke">
+            <TableRoot>
+
+
+                <TableSection>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal"
+                                     Padding="15"
+                                     BackgroundColor="White">
+
+                            <ImageButton Source="https://donpress.com/files/images/news/1906/1555676601_20181011174457-ent18-nov-50-elon.jpeg"
+                                         x:Name="ProfilePhotoButton"
+                                         HeightRequest="80"
+                                         WidthRequest="80"
+                                         CornerRadius="40"
+                                         BorderColor="Gray"
+                                         BorderWidth="1"
+                                         Aspect="AspectFill"
+                                         Clicked="UploadPictureButton_Clicked"/>
+
+
+                            <StackLayout Orientation="Vertical"
+                                         Margin="15,3,5,3">
+                                <Label Text="{Binding User.FullName}"
+                                       FontSize="Large"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="Fill" />
+
+                                <Label Text="{Binding User.DetailInfo}"
+                                       FontSize="Medium"
+                                       HorizontalOptions="Start" />
+                            </StackLayout>
+
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+
+                <TableSection Title="Описание"
+                              TextColor="Black">
+                    <ViewCell>
+                        <StackLayout Padding="10,30,10,30"
+                                     BackgroundColor="White"
+                                     Orientation="Vertical">
+
+                            
+                            <Label Text="МИЭМ НИУ ВШЭ — институт с 56-летней историей, готовит специалистов для высокотехнологичных отраслей промышленности. Педагогический коллектив МИЭМ включает 1 академика РАН, 4 члена-корреспондента РАН, 34 лауреата государственных премий РФ. Тесные связи с ведущими отраслевыми институтами, институтами РАН, мировыми компаниями, такими как National Instruments, InfoWatch, Zyxel, QNAP, Altium Limited, а также оснащенные новейшим оборудованием лаборатории: 3D визуализации; лазерных технологий; телекоммуникации; кибербезопасности — позволяют готовить востребованных специалистов на самом высоком уровне."
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="FillAndExpand" />
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+
+                <TableSection Title="Контакты"
+                              TextColor="Black">
+                    <ViewCell>
+                        <StackLayout Padding="10"
+                                     BackgroundColor="White">
+                            <Label Text="Телефон 89164022979" />
+                            <Label Text="Почта artjom-niki@mail.ru" />
+                        </StackLayout>
+
+                    </ViewCell>
+                </TableSection>
+
+            </TableRoot>
+        </TableView>
+        -->
+    </ContentPage.Content>
+</ContentPage>

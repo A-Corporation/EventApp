@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell x:Class="EventApp.Views.Chat.OutgoingTextTemplate"
+          xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material">
+
+    <Grid Padding="2"
+          Margin="0,2,0,2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*" />
+            <ColumnDefinition Width="0.7*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+
+        <material:MaterialCard BackgroundColor="#e2f1f8"
+                               Elevation="2"
+                               Padding="10,10,10,2"
+                               Grid.Column="1"
+                               CornerRadius="15"
+                               HorizontalOptions="EndAndExpand"
+                               VerticalOptions="StartAndExpand">
+
+            <Grid VerticalOptions="FillAndExpand"
+                  HorizontalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="5" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label FontSize="10"
+                       HorizontalOptions="EndAndExpand"
+                       Text="{Binding Time, StringFormat='{0:h:mm}'}"
+                       TextColor="#ffb300"
+                       VerticalOptions="End"
+                       Grid.Column="1"
+                       Grid.RowSpan="2" />
+
+                <Label FontSize="14"
+                       Text="{Binding Message}"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="StartAndExpand" />
+
+
+                
+
+            </Grid>
+
+
+
+
+
+        </material:MaterialCard>
+
+
+
+
+
+    </Grid>
+
+</ViewCell>

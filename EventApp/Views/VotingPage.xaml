@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             x:Class="EventApp.Views.VotingPage"
+             xmlns:controls="clr-namespace:EventApp.Controls">
+    <ContentPage.Content>
+
+        <ScrollView>
+            <material:MaterialCard Elevation="4"
+                                   Margin="15,40,15,40"
+                                   CornerRadius="20">
+                <StackLayout Spacing="30">
+                    <!-- Вопрос для голосования -->
+                    <material:MaterialLabel Text="{Binding Tittle}"
+                                            FontSize="24"
+                                            HorizontalOptions="Center" />
+
+                    <controls:ItemsControl ItemsSource="{Binding VotingItems}">
+                        <controls:ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <material:MaterialCard Elevation="1"
+                                                       CornerRadius="5"
+                                                       BackgroundColor="#e2f1f8"
+                                                       Padding="5"
+                                                       HorizontalOptions="FillAndExpand">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.8*" />
+                                            <ColumnDefinition Width="0.2*" />
+                                        </Grid.ColumnDefinitions>
+                                        <CheckBox Grid.Column="1"
+                                                  HorizontalOptions="End"
+                                                  Color="#808e95" />
+
+                                        <material:MaterialLabel Text="{Binding Answer}"
+                                                                HorizontalOptions="Start"
+                                                                VerticalOptions="Center"
+                                                                Grid.Column="0" />
+
+                                    </Grid>
+
+                                </material:MaterialCard>
+                            </DataTemplate>
+                        </controls:ItemsControl.ItemTemplate>
+                        <controls:ItemsControl.ItemsLayout>
+                            <DataTemplate>
+                                <StackLayout Orientation="Vertical"
+                                             Spacing="10" />
+                            </DataTemplate>
+                        </controls:ItemsControl.ItemsLayout>
+                    </controls:ItemsControl>
+
+                    <Button Text="ПРОГОЛОСОВАТЬ"
+                            BackgroundColor="#ffb300"
+                            TextColor="Black"
+                            HorizontalOptions="Center"
+                            CornerRadius="5"
+                            Padding="20,5,20,5"/>
+                </StackLayout>
+
+
+            </material:MaterialCard>
+        </ScrollView>
+
+
+    </ContentPage.Content>
+</ContentPage>

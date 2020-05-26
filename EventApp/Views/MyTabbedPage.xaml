@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xf:BottomBarPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:local1="clr-namespace:EventApp.Views"
+                  xmlns:chat="clr-namespace:EventApp.Views.Chat"
+                  x:Class="EventApp.Views.MyTabbedPage"
+                  SelectedTabColor="Black"
+                  xmlns:xf="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms">
+
+    <NavigationPage Icon="Menu"
+                    Title="МЕНЮ"
+                    x:Name="MenuNavigationPage"
+                    BarBackgroundColor="#b0bec5"
+                    BarTextColor="Black">
+        <x:Arguments>
+            <local1:MenuPage />
+        </x:Arguments>
+    </NavigationPage>
+
+
+    <NavigationPage Title="ПРОРАММА"
+                    Icon="Agenda"
+                    BarBackgroundColor="#b0bec5"
+                    BarTextColor="Black">
+        <x:Arguments>
+            <local1:AgendaPage />
+        </x:Arguments>
+    </NavigationPage>
+
+
+
+    <NavigationPage Title="ЧАТ"
+                    Icon="Chat"
+                    BarBackgroundColor="#b0bec5"
+                    BarTextColor="Black">
+        <x:Arguments>
+            <chat:ChatMessagePage />
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="ФОТО"
+                    Icon="PhotoGallery"
+                    BarBackgroundColor="#b0bec5"
+                    BarTextColor="Black">
+        <x:Arguments>
+            <local1:PhotoGalleryPage />
+        </x:Arguments>
+    </NavigationPage>
+
+
+
+    <NavigationPage Title="ПРОФИЛЬ"
+                    Icon="Profile"
+                    BarBackgroundColor="#b0bec5"
+                    BarTextColor="Black">
+        <x:Arguments>
+            <local1:ProfilePage />
+        </x:Arguments>
+    </NavigationPage>
+
+
+
+</xf:BottomBarPage>
