@@ -8,6 +8,8 @@ using Firebase.Database.Query;
 using EventApp.Models;
 using System.Collections.ObjectModel;
 using EventApp.Helpers;
+using System.Threading.Tasks;
+using EventApp.Models.Chat;
 
 namespace EventApp.Web
 {
@@ -100,7 +102,7 @@ namespace EventApp.Web
 
         public async System.Threading.Tasks.Task<User> GetUserByKey(string userKey)
         {
-            return (await firebase.Child("Users").OnceAsync<User>()).Where(a => a.Key == userKey).Select(item => new User()
+            return (await firebase.Child("Events").Child("Event 1").Child("Users").OnceAsync<User>()).Where(a => a.Key == userKey).Select(item => new User()
             {
                 Name = item.Object.Name,
                 SecondName = item.Object.SecondName,
@@ -181,7 +183,7 @@ namespace EventApp.Web
 
         public async System.Threading.Tasks.Task<ObservableCollection<Photo>> ParcePhotos(string eventName)
         {
-            List<SPhoto> sphotos = (await firebase.Child("Photos").OnceAsync<SPhoto>()).Select(
+            List<SPhoto> sphotos = (await firebase.Child("Events").Child(eventName).Child("Photos").OnceAsync<SPhoto>()).Select(
                 item => new SPhoto() { PhotoUrl = item.Object.PhotoUrl, User = item.Object.User, LikesNumber = item.Object.LikesNumber }).ToList();
             List<Photo> photos = new List<Photo>();
             foreach (var ph in sphotos)
@@ -209,10 +211,11 @@ namespace EventApp.Web
 
 
 
-        public async System.Threading.Tasks.Task<User> GetUserByUID(string uid)
+        public async Task<User> GetUserByUID(string uid, string eventName)
         {
-            return (await firebase.Child("Users").OnceAsync<User>()).Where(a => a.Object.Uid == uid).Select(item => new User()
+            return (await firebase.Child("Events").Child(eventName).Child("Users").OnceAsync<User>()).Where(a => a.Object.Uid == uid).Select(item => new User()
             {
+                Uid = item.Object.Uid,
                 Name = item.Object.Name,
                 SecondName = item.Object.SecondName,
                 JobPosition = item.Object.JobPosition,
@@ -220,6 +223,30 @@ namespace EventApp.Web
                 imageUrl = item.Object.imageUrl
             }).FirstOrDefault();
         }
+
+
+        public async Task SaveMessage(ChatMessage message)
+        {
+            await firebase.Child("Events/" + "Event 1" + "/Chats/" + "MainChat").PostAsync(message);
+        }
+
+        
+        public ObservableCollection<ChatMessage> GetMessages2()
+        {
+            return firebase.Child("Events/Event 1/Chats/MainChat")
+                .AsObservable<ChatMessage>()
+                .AsObservableCollection();
+        }
+        
+
+        
+        public async Task<ObservableCollection<ChatMessage>> GetMessages()
+        {
+            List<ChatMessage> chatMessages = (await firebase.Child("Events/" + "Event 1" + "/Chats/ " + "MainChat").OnceAsync<ChatMessage>()).Select(
+                item => new ChatMessage() { Id = item.Object.Id, UserId = item.Object.UserId, UserName = item.Object.UserName, Text = item.Object.Text, ImageUrl = item.Object.ImageUrl, Time = item.Object.Time }).ToList();
+            return new ObservableCollection<ChatMessage>(chatMessages);
+        }
+        
 
     }
 }

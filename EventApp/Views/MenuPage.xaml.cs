@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Xamarin.Forms;
-using EventApp.Views;
-using EventApp.Models;
-using EventApp.Helpers;
 using EventApp.Views.Chat;
+using EventApp.Services;
+using EventApp.Models;
 
 namespace EventApp.Views
 {
@@ -21,7 +14,11 @@ namespace EventApp.Views
             Parallax.ParallaxView = HeaderView;
         }
 
-         
+        protected override async void OnAppearing()
+        {
+            var auth = DependencyService.Get<IFirebaseAuth>();
+            App.ProfileUser = await auth.GetUser("Event 1");
+        }
 
         void OnProfileCellTapped(object sender, System.EventArgs e)
         {

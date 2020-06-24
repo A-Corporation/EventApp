@@ -4,20 +4,35 @@ using EventApp.iOS;
 using Xamarin.Forms;
 using Firebase.Auth;
 using EventApp.Web;
+using Foundation;
+using EventApp.Services;
 
 [assembly: Dependency(typeof(AuthIOS))]
 namespace EventApp.iOS
 {
-    public class AuthIOS : IAuth
+    public class AuthIOS : IFirebaseAuth
     {
         FirebaseHelper firebaseHelper = new FirebaseHelper();
 
-        public async Task<string> LoginWithEmailPassword(string email, string password)
+        public Task<Models.User> GetUser()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsSigned()
+        {
+            var user = Auth.DefaultInstance.CurrentUser;
+            return user != null;
+        }
+
+        public async Task<string> LoginWithEmailPassword(string email, string password, string eventName)
         {
             try
             {
                 var user = await Auth.DefaultInstance.SignInWithPasswordAsync(email, password);
-                App.ProfileUser = await firebaseHelper.GetUserByUID(Auth.DefaultInstance.CurrentUser.Uid);
+                App.ProfileUser = await firebaseHelper.GetUserByUID(Auth.DefaultInstance.CurrentUser.Uid, eventName);
+                if (App.ProfileUser == null)
+                    return "";
                 return await user.User.GetIdTokenAsync();
             }
             catch (Exception e)
@@ -27,20 +42,17 @@ namespace EventApp.iOS
 
         }
 
-        /*
-        public bool SignUpWithEmailPassword(string email, string password)
+        public bool SignOut()
         {
             try
             {
-                var signUpTask = Auth.DefaultInstance.CreateUserAsync(email, password);
-                return signUpTask.Result != null;
+                _ = Auth.DefaultInstance.SignOut(out NSError error);
+                return error == null;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
-
         }
-        */
     }
 }

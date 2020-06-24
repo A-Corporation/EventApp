@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using EventApp.Models;
 using EventApp.Helpers;
-using EventApp.Web;
+using EventApp.Services;
+using System.Diagnostics;
 
 namespace EventApp
 {
@@ -23,19 +24,31 @@ namespace EventApp
         public static User ProfileUser { get; set; }
         public static ContentPage CurPage { get; set; }
 
-        FirebaseHelper firebaseHelper = new FirebaseHelper();
+        private IFirebaseAuth auth;
+
+        public static bool IsActive = true;
 
         public App()
         {
             InitializeComponent();
-            EventName = "Event 1";
             XF.Material.Forms.Material.Init(this);
-            //MainPage = new AuthenticationPage();
-            //MainPage = new VotingPage();
-            MainPage = new MyTabbedPage();
-            //MainPage = new AgendaPage();
-            
+            EventName = "Event 1";
+            ProfileUser = new User();
+
+            auth = DependencyService.Get<IFirebaseAuth>();
+            if (auth.IsSigned())
+            {
+                
+                MainPage = new MyTabbedPage();
+            }
+            else
+            {
+                MainPage = new AuthenticationPage();
+            }
+
+
         }
+
 
         public static async Task Sleep(int ms)
         {
@@ -44,14 +57,7 @@ namespace EventApp
 
         protected override void OnStart()
         {
-            // Handle when your app starts
-            /*
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                LastSpeakersList = await firebaseHelper.GetAllPersons();
-            });
-            */
-            
+
         }
 
         protected override void OnSleep()

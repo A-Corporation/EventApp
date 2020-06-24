@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using EventApp.Droid;
+using EventApp.Models;
+using EventApp.Services;
 using EventApp.Web;
 using Firebase.Auth;
 using Xamarin.Forms;
@@ -8,19 +10,25 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(AuthDroid))]
 namespace EventApp.Droid
 {
-    public class AuthDroid : IAuth
+    public class AuthDroid : IFirebaseAuth
     {
-        public async Task<string> LoginWithEmailPassword(string email, string password)
+        public bool IsSigned()
+        {
+            var user = FirebaseAuth.Instance.CurrentUser;
+            return user != null;
+        }
+
+        public async Task<string> LoginWithEmailPassword(string email, string password, string eventName)
         {
 
             FirebaseHelper firebaseHelper = new FirebaseHelper();
             try
             {
-                email = "artjom-niki@mail.ru";
-                password = "123456";
                 var user = await FirebaseAuth.Instance.SignInWithEmailAndPasswordAsync(email, password);
                 var token = await user.User.GetIdTokenAsync(false);
-                App.ProfileUser = await firebaseHelper.GetUserByUID(FirebaseAuth.Instance.CurrentUser.Uid);
+                App.ProfileUser = await firebaseHelper.GetUserByUID(FirebaseAuth.Instance.CurrentUser.Uid, eventName);
+                if (App.ProfileUser == null)
+                    return "";
                 return token.Token;
             }
             catch (FirebaseAuthInvalidUserException e)
@@ -30,20 +38,29 @@ namespace EventApp.Droid
             }
         }
 
-        /*
-        public bool SignUpWithEmailPassword(string email, string password)
+        public bool SignOut()
         {
             try
             {
-                var signUpTask = FirebaseAuth.Instance.CreateUserWithEmailAndPassword(email, password);
-
-                return signUpTask.Result != null;
+                FirebaseAuth.Instance.SignOut();
+                return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
-            }
+            };
         }
-        */
+
+        public async Task<User> GetUser(string eventName)
+        {
+            FirebaseHelper firebaseHelper = new FirebaseHelper();
+            return await firebaseHelper.GetUserByUID(FirebaseAuth.Instance.CurrentUser.Uid, eventName);
+        }
+
+        public string GetUid()
+        {
+            return FirebaseAuth.Instance.CurrentUser.Uid;
+        }
+
     }
 }

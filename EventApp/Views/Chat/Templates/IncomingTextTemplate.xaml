@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
 
 
-        <ImageButton Source="{Binding User.imageUrl}"
+        <ImageButton Source="{Binding ImageUrl}"
                      Aspect="AspectFill"
                      Visual="Material"
                      WidthRequest="26"
@@ -57,13 +57,13 @@
                 <Label FontSize="10"
                        HorizontalOptions="Start"
                        VerticalOptions="Start"
-                       Text="{Binding User.FullName}"
+                       Text="{Binding UserName}"
                        TextColor="#808e95" />
 
 
                 <Label Grid.Row="1"
                        FontSize="14"
-                       Text="{Binding Message}"
+                       Text="{Binding Text}"
                        HorizontalOptions="FillAndExpand"
                        VerticalOptions="StartAndExpand" />
 

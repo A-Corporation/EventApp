@@ -26,8 +26,9 @@ namespace EventApp.Droid
             ImageCircleRenderer.Init();
             FirebaseApp.InitializeApp(this);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Xamarin.Forms.Forms.Init(this, savedInstanceState);
             XF.Material.Droid.Material.Init(this, savedInstanceState);
+            
 
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
             FirebaseApp.InitializeApp(Application.Context);

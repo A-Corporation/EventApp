@@ -7,10 +7,17 @@
              xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:controls="clr-namespace:EventApp.Controls"
              xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
-             NavigationPage.HasNavigationBar="False">
+             xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
 
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="SignOut"
+                     Order="Primary"
+                     Priority="0"
+                     Clicked="SignOutButton_Clicked" />
+
+
+    </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
 

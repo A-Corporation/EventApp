@@ -15,8 +15,8 @@ namespace EventApp.Views.Chat
         #region Constructor
         public MessageDataTemplateSelector()
         {
-            this.IncomingTextTemplate = new DataTemplate(typeof(IncomingTextTemplate));
-            this.OutgoingTextTemplate = new DataTemplate(typeof(OutgoingTextTemplate));
+            IncomingTextTemplate = new DataTemplate(typeof(IncomingTextTemplate));
+            OutgoingTextTemplate = new DataTemplate(typeof(OutgoingTextTemplate));
         }
         #endregion
 
@@ -31,13 +31,13 @@ namespace EventApp.Views.Chat
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
-            if (((ChatMessage)item).IsReceived)
+            if (((ChatMessage)item).IsMine())
             {
-                return this.IncomingTextTemplate;
+                return OutgoingTextTemplate;
             }
             else
             {
-                return this.OutgoingTextTemplate;
+                return IncomingTextTemplate;
             }
         }
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using EventApp.Helpers;
+using EventApp.Services;
 using EventApp.Web;
 using Xamarin.Forms;
 
@@ -9,37 +11,56 @@ namespace EventApp.Views
     [DesignTimeVisible(true)]
     public partial class AuthenticationPage : ContentPage
     {
-        IAuth auth;
+        private IFirebaseAuth auth;
+        private FirebaseHelper firebaseHelper;
+
+        private string eventName = "";
+        private string login = "123@posos.ru";
+        private string password = "000000";
+        
 
         public AuthenticationPage()
         {
             InitializeComponent();
             Card.BackgroundColor = Color.White.MultiplyAlpha(0.9);
-            auth = DependencyService.Get<IAuth>();
+            auth = DependencyService.Get<IFirebaseAuth>();
+            firebaseHelper = new FirebaseHelper();
+
+            EventNameInput.Completed += (sender, args) => { EmailInput.Focus(); };
+            EmailInput.Completed += (sender, args) => { PasswordInput.Focus(); };
+            
         }
 
 
 
         async void LoginClicked(object sender, EventArgs e)
         {
-            string Token = await auth.LoginWithEmailPassword(EmailInput.Text, PasswordInput.Text);
+            if (EventNameInput.Text != null)
+                eventName = EventNameInput.Text;
+            if (EmailInput.Text != null)
+                login = EmailInput.Text;
+            if (PasswordInput.Text != null)
+                password = PasswordInput.Text;
 
-            if (Token != "")
+            
+            string token = await auth.LoginWithEmailPassword(login, password, eventName);
+
+            if (token != string.Empty)
             {
-                await Navigation.PushAsync(new MyTabbedPage());
+                Application.Current.MainPage = new MyTabbedPage();
             }
             else
             {
                 ShowError();
             }
-            //EmailInput.Text = "";
-            //PasswordInput.Text = "";
         }
 
 
         async private void ShowError()
         {
-            await DisplayAlert("Ошибка авторизации", "Неверный логин или пароль. Попробуйте снова!", "ОК");
+            await DisplayAlert("Ошибка авторизации", "Неверный логин, пароль или название мероприятия. Попробуйте снова!", "ОК");
         }
+
+        
     }
 }

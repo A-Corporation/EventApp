@@ -28,14 +28,15 @@ namespace EventApp.iOS
             App.ScreenHeight = (int)UIScreen.MainScreen.Bounds.Height;
             App.ScreenWidth = (int)UIScreen.MainScreen.Bounds.Width;
             XF.Material.iOS.Material.Init();
+            
             CarouselViewRenderer.Init();
             
-            global::Xamarin.Forms.Forms.Init();
-            Firebase.Core.App.Configure();
+            Forms.Init();
+            //Firebase.Core.App.Configure();
+
             LoadApplication(new App());
 
 
-            //Firebase.Core.App.Configure();
             return base.FinishedLaunching(app, options);
         }
     }

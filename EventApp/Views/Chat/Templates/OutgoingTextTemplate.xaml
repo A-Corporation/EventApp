@@ -45,7 +45,7 @@
                        Grid.RowSpan="2" />
 
                 <Label FontSize="14"
-                       Text="{Binding Message}"
+                       Text="{Binding Text}"
                        HorizontalOptions="FillAndExpand"
                        VerticalOptions="StartAndExpand" />
 

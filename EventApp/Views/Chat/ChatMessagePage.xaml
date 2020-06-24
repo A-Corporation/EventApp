@@ -71,11 +71,12 @@
             <views:NonSelectableListView x:Name="MessagesList"
                                          BackgroundColor="White"
                                          ItemTemplate="{StaticResource MessageDataTemplateSelector}"
-                                         ItemsSource="{Binding ChatMessageInfo}"
+                                         ItemsSource="{Binding .}"
                                          VerticalOptions="FillAndExpand"
                                          HasUnevenRows="True"
                                          SeparatorVisibility="None"
-                                         Grid.ColumnSpan="2">
+                                         Grid.ColumnSpan="2"
+                                         SizeChanged="MessagesList_SizeChanged">
 
             </views:NonSelectableListView>
             <!--
@@ -110,7 +111,6 @@
                          HeightRequest="40"
                          Source="send"
                          Clicked="SendClicked"
-                         Command="{Binding OnSendCommand}"
                          Margin="0,0,0,5" />
 
 
@@ -130,7 +130,6 @@
                                       PlaceholderColor="#808e95"
                                       VerticalOptions="Center"
                                       TextChanged="OnTextChanged"
-                                      Text="{Binding TextToSend}"
                                       x:Name="notesEntry"
                                       FontSize="14"
                                       HorizontalOptions="FillAndExpand" />

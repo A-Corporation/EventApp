@@ -26,5 +26,10 @@ namespace EventApp.Views
             base.OnAppearing();
             int height = App.TabHeight;
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            return false;
+        }
     }
 }
