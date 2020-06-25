@@ -22,9 +22,9 @@ namespace EventApp.Helpers
             speakers.Add(new User("Игорь Манн", "DG", "ACorp", "https://sun9-54.userapi.com/c830709/v830709120/5b6b2/hLr7vS9OkPE.jpg"));
             //speakers.Add(new User("КОТОРЕВА МАРИНА", "Event manager", "JTB", "ProfilePhoto"));
             //speakers.Add(new User("Прокопьев Григорий", "Consulting manager", "BC", "ProfilePhoto"));
-            
 
-            
+
+            /*
             AgendaItems.Add(new AgendaItem
             {
                 StartTime = "10:00",
@@ -134,8 +134,9 @@ namespace EventApp.Helpers
                          select new Grouping<string, AgendaItem>(itemGroup.Key, itemGroup);
 
             AgendaItemsGrouped = new ObservableCollection<Grouping<string, AgendaItem>>(sorted);
+            */
         }
 
-      
+
     }
 }

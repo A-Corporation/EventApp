@@ -16,7 +16,7 @@
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
 
-            <circle:CircleImage Source="{Binding imageUrl}"
+            <circle:CircleImage Source="{Binding ImageUrl}"
                                 Aspect="AspectFill"
                                 Visual="Material"
                                 WidthRequest="80"

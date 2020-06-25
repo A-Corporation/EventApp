@@ -3,37 +3,41 @@ using EventApp.ViewModels;
 using Xamarin.Forms;
 using EventApp.Views.Templates;
 using EventApp.Web;
+using EventApp.Helpers;
+using System;
+using System.Collections.ObjectModel;
 
 namespace EventApp.Views
 {
     public partial class AgendaPage : ContentPage
     {
-        FirebaseHelper firebaseHelper = new FirebaseHelper();
+        public AgendaViewModel Avm;
+
+
+        protected override void OnAppearing()
+        {
+            Avm.AgendaItemsGrouped = App.LocalDB.ParceAgenda();
+        }
 
         public AgendaPage(bool fromMenu)
         {
             InitializeComponent();
-            agendaList.ItemsSource = App.LastAgendaList;
+            Avm = new AgendaViewModel();
+            BindingContext = Avm;
 
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                App.LastAgendaList = await firebaseHelper.ParceAgendaItems(App.EventName);
-                agendaList.ItemsSource = App.LastAgendaList;
-            });
             BackMenuButton.IsVisible = fromMenu;
+            
         }
 
         public AgendaPage()
         {
             InitializeComponent();
-            agendaList.ItemsSource = App.LastAgendaList;
+            Avm = new AgendaViewModel();
+            BindingContext = Avm;
 
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                App.LastAgendaList = await firebaseHelper.ParceAgendaItems(App.EventName);
-                agendaList.ItemsSource = App.LastAgendaList;
-            });
+            
             BackMenuButton.IsVisible = false;
+            
         }
 
 

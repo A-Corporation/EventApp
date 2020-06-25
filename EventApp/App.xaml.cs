@@ -7,13 +7,13 @@ using System.Collections.ObjectModel;
 using EventApp.Models;
 using EventApp.Helpers;
 using EventApp.Services;
-using System.Diagnostics;
+using SQLite;
+using System.IO;
 
 namespace EventApp
 {
     public partial class App : Application
     {
-
         public static int ScreenHeight { get; set; }
         public static int ScreenWidth { get; set; }
         public static int TabHeight { get; set; }
@@ -23,8 +23,11 @@ namespace EventApp
         public static ObservableCollection<Grouping<string, AgendaItem>> LastAgendaList { get; set; }
         public static User ProfileUser { get; set; }
         public static ContentPage CurPage { get; set; }
+        public static LocalDatabase LocalDB;
 
         private IFirebaseAuth auth;
+
+        private AppLoader appLoader;
 
         public static bool IsActive = true;
 
@@ -32,9 +35,13 @@ namespace EventApp
         {
             InitializeComponent();
             XF.Material.Forms.Material.Init(this);
-            EventName = "Event 1";
+
+            EventName = "Event1";
             ProfileUser = new User();
 
+            
+            appLoader = new AppLoader();
+            /*
             auth = DependencyService.Get<IFirebaseAuth>();
             if (auth.IsSigned())
             {
@@ -45,8 +52,8 @@ namespace EventApp
             {
                 MainPage = new AuthenticationPage();
             }
-
-
+            */
+            MainPage = new MyTabbedPage();
         }
 
 

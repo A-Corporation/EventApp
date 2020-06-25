@@ -14,46 +14,46 @@ namespace EventApp.Views
             Parallax.ParallaxView = HeaderView;
         }
 
+        /*
         protected override async void OnAppearing()
         {
             var auth = DependencyService.Get<IFirebaseAuth>();
-            App.ProfileUser = await auth.GetUser("Event 1");
+            App.ProfileUser = await auth.GetUser(App.EventName);
         }
-
-        void OnProfileCellTapped(object sender, System.EventArgs e)
+        */
+        public void OnProfileCellTapped(object sender, System.EventArgs e)
         {
             Navigation.PushAsync(new ProfilePage());
         }
 
 
-        void OnAgendaCellTapped(object sender, System.EventArgs e)
+        public void OnAgendaCellTapped(object sender, System.EventArgs e)
         {
-            Debug.WriteLine("Agenda");
             Navigation.PushAsync(new AgendaPage(true));
         }
 
 
-        void OnAttendeesCellTapped(object sender, System.EventArgs e)
+        public void OnAttendeesCellTapped(object sender, System.EventArgs e)
         {
             Navigation.PushAsync(new UsersPage("speaker"));
         }
 
-        void OnSpeakersQuestionsCellTapped(object sender, System.EventArgs e)
+        public void OnSpeakersQuestionsCellTapped(object sender, System.EventArgs e)
         {
             Navigation.PushAsync(new SpeakersQuestionsPage());
         }
 
-        void OnPhotoGalleryCellTapped(object sender, System.EventArgs e)
+        public void OnPhotoGalleryCellTapped(object sender, System.EventArgs e)
         {
             Navigation.PushAsync(new PhotoGalleryPage(true));
         }
 
-        void OnChatCellTapped(object sender, System.EventArgs e)
+        public void OnChatCellTapped(object sender, System.EventArgs e)
         {
-            Navigation.PushAsync(new ChatMessagePage(true)); // кнопка назад в меню видна
+            Navigation.PushAsync(new ChatMessagePage(true)); 
         }
 
-        void OnInfoCellTapped(object sender, System.EventArgs e)
+        public void OnInfoCellTapped(object sender, System.EventArgs e)
         {
         }
 

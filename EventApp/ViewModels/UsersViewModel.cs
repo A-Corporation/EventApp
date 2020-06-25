@@ -12,10 +12,24 @@ using Xamarin.Forms;
 namespace EventApp.ViewModels
 {
 
-    public class UsersViewModel
+    public class UsersViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<User> Users { get; set; }
-        public ObservableCollection<Grouping<string, User>> UsersGrouped { get; set; }
+        private ObservableCollection<Grouping<string, User>> usersGrouped;
+        public ObservableCollection<Grouping<string, User>> UsersGrouped
+        {
+            set
+            {
+                usersGrouped = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("UsersGrouped"));
+            }
+
+            get
+            {
+                return usersGrouped;
+            }
+        }
 
         public string type { get; set; }
         public string Type
@@ -46,12 +60,18 @@ namespace EventApp.ViewModels
 
         public string UsersCount => Users.Count.ToString() + " speakers";
 
+        FirebaseHelper firebaseHelper = new FirebaseHelper();
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
 
 
         public UsersViewModel(string type_)
         {
             type = type_;
-            
+            UsersGrouped = new ObservableCollection<Grouping<string, User>>();
+            UsersGrouped = App.LocalDB.ParceUsers();
+
         }
 
 

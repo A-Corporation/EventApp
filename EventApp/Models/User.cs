@@ -12,7 +12,7 @@ namespace EventApp.Models
         public string Uid { get; set; }
 
         // Фото участника
-        public string imageUrl { get; set; }
+        public string ImageUrl { get; set; }
 
         //ФИО
         public string Name { get; set; }
@@ -35,6 +35,8 @@ namespace EventApp.Models
                 return JobPosition + ", " + CompanyName;
             }
         }
+
+        public List<string> AgendaItemsId { get; set; }
 
         // Лекции
         public List<AgendaItem> Lectures { get; set; }
@@ -59,7 +61,7 @@ namespace EventApp.Models
         {
             JobPosition = jobPosition_;
             CompanyName = componyName_;
-            this.imageUrl = imageUrl;
+            this.ImageUrl = imageUrl;
             UserDetailsPageTransitCommand = new Command(
                 execute: () =>
                 {

@@ -14,7 +14,13 @@ namespace EventApp.iOS
     {
         FirebaseHelper firebaseHelper = new FirebaseHelper();
 
-        public Task<Models.User> GetUser()
+        public string GetUid()
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public Task<Models.User> GetUser(string eventName)
         {
             throw new NotImplementedException();
         }

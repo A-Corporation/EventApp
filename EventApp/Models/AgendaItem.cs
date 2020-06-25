@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using EventApp.Web;
+using Xamarin.Forms;
 
 namespace EventApp.Models
 {
+    
     public class AgendaItem
     {
+        public string Id { get; set; }
+
         public string StartTime { get; set; }
         public string EndTime { get; set; }
 
@@ -27,6 +32,9 @@ namespace EventApp.Models
         public string Title { get; set; }
         public string Location { get; set; }
 
+        public List<string> SpeakersId { get; set; }
+
+        /*
         public string LectureType
         {
             set
@@ -41,43 +49,48 @@ namespace EventApp.Models
             
         }
 
-        public string SpeakerType => (Speakers.Count > 1 ? "СПИКЕРЫ" : "СПИКЕР");
 
 
+        
         //public User Speaker { get; set; }
         public ObservableCollection<SpeakersQuestion> SpeakersQuestions { get; set; }
-        public ObservableCollection<User> Speakers { get; set; }
+        
         public User Speaker => Speakers[0];
         public string Key { get; set; }
         public List<SpeakerKey> Sspeaker { get; set; }
+        
+
+        public ObservableCollection<User> Speakers => App.LocalDB.GetUsersByUIDList(SpeakersId);
 
         public bool Questions => Speakers.Count > 0;
         public bool AdditionInfo => Speakers.Count > 0;
         public bool OneSpeaker => Speakers.Count == 1;
         public bool SpeakersList => Speakers.Count > 1;
         public string Orientation => (Speakers.Count > 1 ? "Horizontal" : "Vertical");
-        
-        
-        
+        public string SpeakerType => (Speakers.Count > 1 ? "СПИКЕРЫ" : "СПИКЕР");
         public bool NameInfo => Speakers.Count <= 1;
         
-
+        */
 
 
         public AgendaItem()
         {
+            //FirebaseHelper firebase = new FirebaseHelper();
             /*
-            Speakers = new ObservableCollection<User>();
-            Sspeakers = new List<string>();
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                Speakers = await firebase.GetUsersByUIDList(SpeakersId, App.EventName);
+            });
             */
-            SpeakersQuestions = new ObservableCollection<SpeakersQuestion>();
-            CreateSpeakersQuestionsCollection();
-            
+
+
+            //CreateSpeakersQuestionsCollection();
+
         }
-
-
         
 
+
+        /*
         private void CreateSpeakersQuestionsCollection()
         {
             SpeakersQuestions.Add(new SpeakersQuestion
@@ -108,7 +121,7 @@ namespace EventApp.Models
                 LikesNumber = 1
             });
         }
-        
+        */
     }
 
 

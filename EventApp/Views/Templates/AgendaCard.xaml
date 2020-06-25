@@ -71,6 +71,8 @@
                          IsVisible="{Binding AdditionInfo}">
 
                 <!-- Лекция или что-то подобное -->
+
+                <!--
                 <material:MaterialLabel Text="{Binding LectureType}"
                                         VerticalOptions="Center"
                                         HorizontalOptions="FillAndExpand"
@@ -79,8 +81,7 @@
                                         FontAttributes="Bold"
                                         FontFamily="zurich-light-condensed-bt"
                                         Margin="0,5,0,5" />
-
-
+                
                 <StackLayout Orientation="Horizontal"
                              Spacing="15"
                              IsVisible="{Binding OneSpeaker}">
@@ -100,7 +101,7 @@
                                             HorizontalTextAlignment="Start"
                                             FontFamily="zurich-light-condensed-bt" />
 
-
+                
                 </StackLayout>
 
                 <controls:ItemsControl IsVisible="{Binding SpeakersList}"
@@ -125,7 +126,7 @@
                         </DataTemplate>
                     </controls:ItemsControl.ItemsLayout>
                 </controls:ItemsControl>
-
+                -->
             </StackLayout>
 
         </Grid>

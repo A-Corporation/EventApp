@@ -27,10 +27,7 @@ namespace EventApp.ViewModels.Chat
             firebase = new FirebaseHelper();
             ChatMessageInfo = new ObservableCollection<ChatMessage>();
             Messages = new ObservableCollection<ChatMessage>();
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                ChatMessageInfo = await firebase.GetMessages();
-            });
+  
             
             
 

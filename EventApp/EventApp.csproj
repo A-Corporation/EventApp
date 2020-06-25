@@ -27,6 +27,7 @@
     <PackageReference Include="CommonServiceLocator" Version="2.0.5" />
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -44,5 +45,9 @@
     <Folder Include="ViewModels\Chat\" />
     <Folder Include="Web\" />
     <Folder Include="Services\" />
+    <Folder Include="Db\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Views\Templates\AgendaPage.xaml.cs" />
   </ItemGroup>
 </Project>

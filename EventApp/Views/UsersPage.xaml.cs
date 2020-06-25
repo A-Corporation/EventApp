@@ -14,7 +14,7 @@ namespace EventApp.Views
     public partial class UsersPage : ContentPage
     {
 
-        UsersViewModel Uvm;
+        public UsersViewModel Uvm;
         FirebaseHelper firebaseHelper = new FirebaseHelper();
         public string type { get; set; }
         public string Type
@@ -44,16 +44,10 @@ namespace EventApp.Views
         {
             InitializeComponent();
             type = attendeesType;
-            usersList.ItemsSource = App.LastSpeakersList;
 
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                //Uvm = new UsersViewModel(attendeesType);
-                //BindingContext = await Uvm.GetUsers();
-                //App.LastSpeakersList = await firebaseHelper.GetAllPersonsByAttendeeList(App.EventName, attendeesType);
-                App.LastSpeakersList = await firebaseHelper.GetAllPersons();
-                usersList.ItemsSource = App.LastSpeakersList;
-            });
+            Uvm = new UsersViewModel(attendeesType);
+            BindingContext = Uvm;
+            
 
             
         }

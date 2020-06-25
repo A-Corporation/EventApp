@@ -25,6 +25,7 @@
 
     <ContentPage.Content>
         <ListView x:Name="usersList"
+                  ItemsSource="{Binding UsersGrouped}"
                   ItemTapped="Handle_ItemTapped"
                   ItemSelected="Handle_ItemSelected"
                   HasUnevenRows="True"

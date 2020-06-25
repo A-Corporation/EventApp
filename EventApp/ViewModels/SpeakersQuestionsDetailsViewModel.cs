@@ -16,7 +16,7 @@ namespace EventApp.ViewModels
         public SpeakersQuestionsDetailsViewModel(AgendaItem agendaItem)
         {
             AgendaItem = agendaItem;
-            SpeakersQuestions = agendaItem.SpeakersQuestions;
+            //SpeakersQuestions = agendaItem.SpeakersQuestions;
             Sort();
         }
 

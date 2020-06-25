@@ -24,7 +24,7 @@ namespace EventApp.Views.Chat
             CMvm = new ChatMessageViewModel();
             BindingContext = CMvm;
             firebase = new FirebaseHelper();
-            //MessagesList.BindingContext = firebase.GetMessages();
+            MessagesList.BindingContext = firebase.GetMessages();
             BackMenuButton.IsVisible = fromMenu;
         }
 
@@ -35,7 +35,7 @@ namespace EventApp.Views.Chat
             CMvm = new ChatMessageViewModel();
             //BindingContext = CMvm;
             firebase = new FirebaseHelper();
-            MessagesList.BindingContext = firebase.GetMessages2();
+            MessagesList.BindingContext = firebase.GetMessages();
 
             BackMenuButton.IsVisible = false;
             
@@ -77,7 +77,7 @@ namespace EventApp.Views.Chat
                 Id = Guid.NewGuid().ToString(),
                 UserId = App.ProfileUser.Uid,
                 UserName = App.ProfileUser.FullName,
-                ImageUrl = App.ProfileUser.imageUrl,
+                ImageUrl = App.ProfileUser.ImageUrl,
                 Text = notesEntry.Text,
                 Time = DateTime.Now
             };
